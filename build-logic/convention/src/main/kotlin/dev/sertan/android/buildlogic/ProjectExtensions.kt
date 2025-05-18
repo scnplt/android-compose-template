@@ -7,3 +7,6 @@ import org.gradle.kotlin.dsl.getByType
 
 internal val Project.libs: VersionCatalog
     get() = extensions.getByType<VersionCatalogsExtension>().named("libs")
+
+internal val Project.reportsFolder: String
+    get() = "$rootDir/reports"

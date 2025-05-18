@@ -18,6 +18,10 @@ tasks {
 
 gradlePlugin {
     plugins {
+        register("analysis") {
+            id = libs.plugins.sc.analysis.get().pluginId
+            implementationClass = "AnalysisConventionPlugin"
+        }
         register("androidApplication") {
             id = libs.plugins.sc.android.application.asProvider().get().pluginId
             implementationClass = "AndroidApplicationConventionPlugin"
