@@ -8,7 +8,7 @@ import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 
-internal class AndroidApplicationConventionPlugin: Plugin<Project> {
+internal class AndroidApplicationConventionPlugin : Plugin<Project> {
     override fun apply(target: Project): Unit = with(target) {
         apply(plugin = "com.android.application")
 
