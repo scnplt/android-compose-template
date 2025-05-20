@@ -1,11 +1,22 @@
-import dev.sertan.android.buildlogic.ApplicationConfig
-
 plugins {
     alias(libs.plugins.sc.android.application.compose)
 }
 
 android {
-    namespace = ApplicationConfig.APP_PACKAGE_ID
+    namespace = "dev.sertan.android.template"
+
+    defaultConfig {
+        versionCode = 1
+        versionName = "0.0.1"
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"))
+        }
+    }
 }
 
 dependencies {

@@ -1,4 +1,5 @@
-import dev.sertan.android.buildlogic.libs
+
+import dev.sertan.android.buildlogic.getLibrary
 import dev.sertan.android.buildlogic.reportsFolder
 import org.gradle.api.Action
 import org.gradle.api.Plugin
@@ -11,7 +12,7 @@ import org.gradle.kotlin.dsl.named
 import org.gradle.kotlin.dsl.register
 import org.gradle.language.base.plugins.LifecycleBasePlugin
 
-internal class AnalysisConventionPlugin : Plugin<Project> {
+internal class AnalysisPlugin : Plugin<Project> {
     override fun apply(target: Project): Unit = with(target) {
         configureDetekt()
         configureKtlint()
@@ -21,7 +22,7 @@ internal class AnalysisConventionPlugin : Plugin<Project> {
         val detekt = configurations.create("detekt")
 
         dependencies {
-            add("detekt", libs.findLibrary("detekt.cli").get())
+            add("detekt", getLibrary("detekt.cli"))
         }
 
         tasks.register<JavaExec>("detektCheck") {
@@ -47,7 +48,7 @@ internal class AnalysisConventionPlugin : Plugin<Project> {
         dependencies {
             addProvider(
                 "ktlint",
-                libs.findLibrary("ktlint.cli").get(),
+                getLibrary("ktlint.cli"),
                 Action<ExternalModuleDependency> {
                     attributes {
                         attribute(

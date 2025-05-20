@@ -20,15 +20,31 @@ gradlePlugin {
     plugins {
         register("analysis") {
             id = libs.plugins.sc.analysis.get().pluginId
-            implementationClass = "AnalysisConventionPlugin"
+            implementationClass = "AnalysisPlugin"
         }
         register("androidApplication") {
             id = libs.plugins.sc.android.application.asProvider().get().pluginId
-            implementationClass = "AndroidApplicationConventionPlugin"
+            implementationClass = "AndroidApplicationPlugin"
         }
         register("androidComposeApplication") {
             id = libs.plugins.sc.android.application.compose.get().pluginId
-            implementationClass = "AndroidApplicationComposeConventionPlugin"
+            implementationClass = "AndroidApplicationComposePlugin"
+        }
+        register("androidFeature") {
+            id = libs.plugins.sc.android.feature.compose.get().pluginId
+            implementationClass = "AndroidFeatureComposePlugin"
+        }
+        register("androidLibrary") {
+            id = libs.plugins.sc.android.library.asProvider().get().pluginId
+            implementationClass = "AndroidLibraryPlugin"
+        }
+        register("androidLibraryCompose") {
+            id = libs.plugins.sc.android.library.compose.get().pluginId
+            implementationClass = "AndroidLibraryComposePlugin"
+        }
+        register("hilt") {
+            id = libs.plugins.sc.hilt.get().pluginId
+            implementationClass = "HiltPlugin"
         }
     }
 }

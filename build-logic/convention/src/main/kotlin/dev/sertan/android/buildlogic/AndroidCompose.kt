@@ -8,19 +8,15 @@ import org.gradle.kotlin.dsl.dependencies
 internal fun Project.configureCompose(commonExtension: CommonExtension<*, *, *, *, *, *>) {
     apply(plugin = "org.jetbrains.kotlin.plugin.compose")
 
-    commonExtension.apply {
-        buildFeatures {
-            compose = true
-        }
-    }
+    commonExtension.buildFeatures.compose = true
 
     dependencies {
-        val composeBom = libs.findLibrary("androidx.compose.bom").get()
+        val composeBom = getLibrary("androidx.compose.bom")
         "implementation"(platform(composeBom))
         "androidTestImplementation"(platform(composeBom))
 
         // Android Studio Preview support
-        "implementation"(libs.findLibrary("androidx.ui.tooling.preview").get())
-        "debugImplementation"(libs.findLibrary("androidx.ui.tooling").get())
+        "implementation"(getLibrary("androidx.ui.tooling.preview"))
+        "debugImplementation"(getLibrary("androidx.ui.tooling"))
     }
 }

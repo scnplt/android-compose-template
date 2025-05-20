@@ -5,26 +5,30 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.assign
 import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.dependencies
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 
 internal fun Project.configureAndroidCommon(commonExtension: CommonExtension<*, *, *, *, *, *>) {
     apply(plugin = "org.jetbrains.kotlin.android")
 
     commonExtension.apply {
-        compileSdk = ApplicationConfig.COMPILE_SDK
+        compileSdk = ProjectConfig.COMPILE_SDK
 
         defaultConfig {
-            minSdk = ApplicationConfig.MIN_SDK
-            testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+            minSdk = ProjectConfig.MIN_SDK
         }
 
         compileOptions {
-            sourceCompatibility = ApplicationConfig.JAVA_VERSION
-            targetCompatibility = ApplicationConfig.JAVA_VERSION
+            sourceCompatibility = ProjectConfig.JAVA_VERSION
+            targetCompatibility = ProjectConfig.JAVA_VERSION
         }
 
         configure<KotlinAndroidProjectExtension> {
-            compilerOptions.jvmTarget = ApplicationConfig.JVM_TARGET
+            compilerOptions.jvmTarget = ProjectConfig.JVM_TARGET
         }
+    }
+
+    dependencies {
+        "implementation"(getLibrary("androidx.core.ktx"))
     }
 }
